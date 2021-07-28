@@ -91,8 +91,6 @@ function Content({ currentTab }) {
         actualDisplayContent = displayContent['company']
     }
 
-    console.log(actualDisplayContent)
-
     return(
         <div className="right-content">
             <h2 className="title">{actualDisplayContent.title}</h2>
