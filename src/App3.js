@@ -1,16 +1,16 @@
 import React from 'react'
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 function App3() {
 
-    const arr = [0, 1, 2, 3, 4]
+    let arr = [3, 5, -4, 8, 11, 1, -1, 6]
 
-    const gg = [...Array(6)]
+    console.log('length' + arr.length)
 
-    gg.map( (s, i) => {
-        console.log('this is nice at ' + i)
-    })
+    for(let i = 0; i < arr.length - 1; i++) {
+        console.log(i)
+    }
 
-    // console.log(gg)
 
     return(
         <React.Fragment>
