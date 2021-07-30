@@ -11,7 +11,7 @@ function App3() {
 
     let results = [0, 0, 1]
 
-    function tournyWinner(competitions, results) {
+    function tourneyWinner(competitions, results) {
 
         let HOME_TEAM_WON = 1
 
@@ -19,16 +19,40 @@ function App3() {
 
         let scores = {[currentBestTeam]: 0}
 
-        for(let i = 0; i < results.legth; i++) {
+        for(let i = 0; i < results.length; i++) {
             
+            let result = results[i]
+
             let [homeTeam, awayTeam] = competitions[i]
 
-            console.log(homeTeam, awayTeam)
+            let winningTeam = result === HOME_TEAM_WON ? homeTeam : awayTeam
+
+            updateScore(scores, winningTeam, 3)
+
+            if(scores[winningTeam] > scores[currentBestTeam]) {
+                currentBestTeam = winningTeam
+            }
 
         }
+
+        return currentBestTeam
         
+        function updateScore(scores, team, points) {
+
+            if(!(team in scores)) {
+                scores[team] = 0
+            }
+
+            scores[team] += points
+
+
+        }
+
 
     }
+
+    console.log(tourneyWinner(competitions, results))
+
 
 
 
