@@ -3,46 +3,46 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 function App3() {
 
-    let array = [3, 5, -4, 8, 11, 1, -1, 6]
+    let competitions = [
+        ['HTML', 'c#'],
+        ['c#', 'Python'],
+        ['Python', 'HTML']
+    ]
 
-    let targetSum = 10
+    let results = [0, 0, 1]
 
-    let twoNumSum = (array, targetSum) => {
+    function tournyWinner(competitions, results) {
 
-        for(let i = 0; i < array.length - 1; i++) {
-        
-            var firstNum = array[i]
-    
-            for(let j = i + 1; j < array.length; j++) {
-    
-                var secondNum = array[j]
-    
-                if(firstNum + secondNum === targetSum) {
-                    return [firstNum, secondNum]
-                }
-    
-            }
-    
+        let HOME_TEAM_WON = 1
+
+        let currentBestTeam = ''
+
+        let scores = {[currentBestTeam]: 0}
+
+        for(let i = 0; i < results.legth; i++) {
+            
+            let [homeTeam, awayTeam] = competitions[i]
+
+            console.log(homeTeam, awayTeam)
+
         }
+        
 
     }
-
-    console.log(twoNumSum(array, targetSum))
-
 
 
 
     return(
         <React.Fragment>
             <div className="app3-header">
-                <h1 className="app3-title">App3</h1>
+                <fieldset>
+                    <legend>Hi</legend>
+                </fieldset>
             </div>
         </React.Fragment>
     )
 
 }
-
-
 
 
 
