@@ -1,7 +1,37 @@
 import React, { useState, useContext } from 'react'
 
+// Context Provider
+const TestContext = React.createContext()
 
+
+function TestContextProvider({ children }) {
+
+    function consoleLog() {
+        console.log('it worked')
+    }
+
+    const providerValues = {
+        consoleLog
+    }
+
+    return(
+
+        <TestContext.Provider value={ providerValues }>
+            {children}
+        </TestContext.Provider>
+
+    )
+
+}
+
+const useTestContext = () => {
+    const context = useContext(TestContext)
+    return context
+}
+
+// Main App
 function App2() {
+
 
     const [currentTab, setCurrentTab] = useState('company')
 
@@ -19,8 +49,10 @@ function App2() {
             <div className="practice-container">
                 <h1 className="title">Rivian Tabs</h1>
                 <div className="content-container">
-                    <SideMenu handleClick={handleClick} />
-                    <Content currentTab={currentTab} />
+                    <TestContextProvider>
+                        <SideMenu handleClick={handleClick} />
+                        <Content currentTab={currentTab} />
+                    </TestContextProvider>
                 </div>
             </div>
         </React.Fragment>
@@ -28,7 +60,10 @@ function App2() {
     )
 }
 
+// SideMenu
 function SideMenu({ handleClick }) {
+
+    const { consoleLog } = useTestContext()
 
     let tabsArr = [
         {
@@ -56,6 +91,7 @@ function SideMenu({ handleClick }) {
                     return <Tab handleClick={handleClick} tabText={tab.tabText} type={tab.type} />
                 })
             }
+            <button onClick={consoleLog}>click</button>
         </aside>
 
     )
