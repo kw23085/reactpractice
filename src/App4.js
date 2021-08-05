@@ -14,43 +14,43 @@ function App4() {
     })
     const [allPass, setAllPass] = useState(false)
 
-    function handlePWChange(e) {
-        let newPwValue = e.target.value
+    let pwIntRegex = /\d/
+    let pwCaseRegex = /[A-Z]/
+    let pwLength = pwValue.length
 
+    function handlePWChange(e) {
+        setPwValue(e.target.value)
     }
 
-    // function checkPwReqMet(newPwValue) {
-        
-    //     let ch
-        
-    //     for(var i = 0; i < newPwValue.length; i++) {
-    //         ch = newPwValue.charAt(i)
-    //         console.log(isUpperCase(ch))
-    //     }
-
-    // }
-
-    // Check if all pw requirments are met
-    // function isAllReqMet() {
-    //     let result = true
-    //     for(var i in pwReq) {
-    //         if(!(pwReq[i])) {
-    //             result = false
-    //             break
-    //         }
-    //     }
-    //     return result
-    // }
+    function handleSubmit(e) {
+        e.preventDefault()
+    }
 
     useEffect(() =>{
+        
+        if(pwIntRegex.test(pwValue)) {
+            setPwReq({
+                ...pwReq,
+                pwInt: true
+            })
+        } else if(pwCaseRegex.test(pwValue)) {
+            setPwReq({
+                ...pwReq,
+                pwUppercase: true
+            })
+        } else if (pwLength >= 8) {
+            setPwReq({
+                ...pwReq,
+                pwLength: true
+            })
+        }
 
-        setPwReq({
-            ...pwReq,
-            pwLength: true,
-            pwUppercase: true
-        })
+        if(!Object.values(pwReq).includes(false)) setAllPass(true)
 
-    }, [])
+
+        console.log(pwReq)
+
+    }, [pwValue])
 
 
  
@@ -61,11 +61,12 @@ function App4() {
 
                 <div className="password__container">
 
-                    <form className="password__form">
+                    <form className="password__form" onSubmit={handleSubmit}>
                         <div>
                             <label for="password">Password: </label>
-                            <input class="password__input" type="password" name="password" onChange={handlePWChange}></input>
+                            <input class="password__input" type="password" name="password" value={pwValue} onChange={handlePWChange}></input>
                         </div>
+                        <button type="submit" className={`password__button ${allPass ? 'green' : ''}`} disabled={!allPass}>Confirm</button>
                     </form>
 
                     <div className="password__valiblock">
@@ -79,8 +80,6 @@ function App4() {
                             <p className={`text ${pwReq.pwInt ? 'green' : ''}`}>Password must contain 1 number</p>
                         </div>
                     </div>
-
-                    <button className={`password__button ${allPass ? 'green' : ''}`} disabled={!allPass}>Confirm</button>
 
                 </div>
 

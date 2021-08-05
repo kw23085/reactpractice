@@ -155,6 +155,8 @@ footer {
 /* App3 */
 .homepage__container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 .slider {
@@ -177,6 +179,18 @@ footer {
   height: 50px;
 }
 .slider__img {
+  width: 100%;
+}
+
+.character-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+
+.character-grid__card img {
+  display: block;
   width: 100%;
 }
 
