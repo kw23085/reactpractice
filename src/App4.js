@@ -27,7 +27,6 @@ function App4() {
             pwUppercase: pwCaseRegex.test(value),
             pwInt: pwIntRegex.test(value)        
         })
-
     }
 
     const debouncedHandlePwChange = debounce(handlePWChange, 500);

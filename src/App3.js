@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Input from './components/Input'
 
 
-let BASE_URL = 'https://www.breakingbadapi.com/api/characters'
+// let BASE_URL = 'https://www.breakingbadapi.com/api/characters'
+let BASE_URL = 'https://randomuser.me/api/'
 
 
 function App3() {
@@ -11,49 +12,50 @@ function App3() {
     const [pointer, setPointer] = useState(0)
     const [query, setQuery] = useState('')
 
-    // let imgUrl = users ? users[pointer].img : ''
-    // let name = users ? users[pointer].name : ''
-
-    // Handle Click Function
-    // function handleClick(e) {
-    //     let btnClicked = e.target.id
-    //     let userLength = users.length
-
-    //     if(btnClicked === 'left' && pointer > 0) {
-    //         console.log('left')
-    //         setPointer(prev => prev - 1)
-    //     } else if(btnClicked === 'right' && pointer < userLength) {
-    //         console.log('right')
-    //         setPointer(prev => prev + 1)
-    //     }
-    // }
 
     function getQuery(e) {
         setQuery(e)
-    }    
+    }
 
     // Fetch function
-    async function fetchUsers() {
-        let users = await fetch(`${BASE_URL}?name=${query}`)
-        .then(res => res.json())
-        .then(data => {
-            let usersArr = []
-            data.forEach(data => {
-                let obj = {name: data.name, img: data.img}
-                usersArr.push(obj)
-            })
-            return usersArr
-        })
-        return users
+    // function fetchUsers() {
+    //     let users = fetch(`${BASE_URL}?name=${query}`)
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         let usersArr = []
+    //         data.forEach(data => {
+    //             let obj = {name: data.name, img: data.img}
+    //             usersArr.push(obj)
+    //         })
+    //         return usersArr
+    //     })
+    //     return users
+    // }
+
+    // useEffect(() => {
+    //     fetchUsers().then(user => {
+    //         setUsers(user)
+    //     })
+    // }, [query])
+
+    // Fetch Users
+    const fetchUsers = () => {
+            const res = fetch(BASE_URL)
+
+            const data = res.json()
+    
+            return data.results[0]
     }
 
     useEffect(() => {
-        fetchUsers().then(user => {
-            setUsers(user)
-        })
-    }, [query])
 
-    console.log(query)
+        
+        
+    }, [])
+
+
+
+    // console.log(query)
 
     return(
         <React.Fragment>
@@ -68,7 +70,7 @@ function App3() {
                     <button id="right" className="slider__button" onClick={handleClick}>right</button>
                 </div> */}
                 <div className="character-grid">
-                    { users ? (
+                    {/* { users ? (
                         users.map( indUser => {
                             return <div className="character-grid__card">
                                         <img src={indUser.img} />
@@ -77,7 +79,7 @@ function App3() {
                         })
                     ) : (
                         ''
-                    )}
+                    )} */}
                 </div>
             </div>
 
