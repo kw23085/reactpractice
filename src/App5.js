@@ -7,22 +7,29 @@ function App5() {
 
 
     const changeLight = () => {
-    
         setPointer(prv => prv += 1)
-
     }
 
 
     useEffect(() => {
 
-        setInterval(() => {
+        if(pointer < 3) {
 
-            changeLight()
+            let interval = setInterval(() => {
+
+                changeLight()
+        
+            }, 2000)
     
-        }, 2000)
+            return () => clearInterval(interval)
 
-    }, [])
+        } else {
+            
+            setPointer(0)
 
+        }
+
+    }, [pointer])
 
     return (
         <React.Fragment>
