@@ -7,8 +7,6 @@ function App5() {
 
 
     const changeLight = () => {
-
-        if(pointer === 3) setPointer(0)
     
         setPointer(prv => prv += 1)
 
