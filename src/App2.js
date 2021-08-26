@@ -1,32 +1,60 @@
 import React, { useState, useContext } from 'react'
 
 // Context Provider
-const TestContext = React.createContext()
+// const TestContext = React.createContext()
 
 
-function TestContextProvider({ children }) {
+// function TestContextProvider({ children }) {
+
+//     function consoleLog() {
+//         console.log('it worked')
+//     }
+
+//     const providerValues = {
+//         consoleLog
+//     }
+
+//     return(
+
+//         <TestContext.Provider value={ providerValues }>
+//             {children}
+//         </TestContext.Provider>
+
+//     )
+
+// }
+
+// const useTestContext = () => {
+//     const context = useContext(TestContext)
+//     return context
+// }
+
+const ClickContext = React.createContext()
+
+function ClickContextProvider({ children }) {
 
     function consoleLog() {
-        console.log('it worked')
+        console.log('it worked bro')
     }
 
     const providerValues = {
         consoleLog
     }
 
-    return(
-
-        <TestContext.Provider value={ providerValues }>
+    return (
+        <ClickContext.Provider value={providerValues}>
             {children}
-        </TestContext.Provider>
-
+        </ClickContext.Provider>
     )
 
 }
 
-const useTestContext = () => {
-    const context = useContext(TestContext)
+const useClickContext = () => {
+
+    const context = useContext(ClickContext)
+
     return context
+
 }
 
 // Main App
@@ -49,10 +77,10 @@ function App2() {
             <div className="practice-container">
                 <h1 className="title">Rivian Tabs</h1>
                 <div className="content-container">
-                    <TestContextProvider>
+                    <ClickContextProvider>
                         <SideMenu handleClick={handleClick} />
                         <Content currentTab={currentTab} />
-                    </TestContextProvider>
+                    </ClickContextProvider>
                 </div>
             </div>
         </React.Fragment>
@@ -63,7 +91,7 @@ function App2() {
 // SideMenu
 function SideMenu({ handleClick }) {
 
-    const { consoleLog } = useTestContext()
+    const { consoleLog } = useClickContext()
 
     let tabsArr = [
         {

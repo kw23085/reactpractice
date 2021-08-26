@@ -49,8 +49,7 @@ function App3() {
 
     useEffect(() => {
 
-        
-        
+   
     }, [])
 
 
