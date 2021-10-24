@@ -1,33 +1,46 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, lazy, Suspense } from 'react'
 
-// Context Provider
-// const TestContext = React.createContext()
+const App3 = lazy(() => import('./App3'))
+
+const SomeContext = React.createContext()
 
 
-// function TestContextProvider({ children }) {
+function SomeContextProvider({ children }) {
 
-//     function consoleLog() {
-//         console.log('it worked')
-//     }
+    function test() {
+        console.log(test)
+    }
 
-//     const providerValues = {
-//         consoleLog
-//     }
+    const providerValues = {
+        test
+    }
 
-//     return(
+    return (
 
-//         <TestContext.Provider value={ providerValues }>
-//             {children}
-//         </TestContext.Provider>
+        <SomeContext.Provider value={providerValues}>
+            <Suspense fallback={}>
+                <App3 />
+            </Suspense>
+            
+            {children}
+        </SomeContext.Provider>
 
-//     )
+    )
+    
+}
 
-// }
 
-// const useTestContext = () => {
-//     const context = useContext(TestContext)
-//     return context
-// }
+const useSomeContext = () => {
+
+    let context = useContext(SomeContext)
+
+    return context
+
+}
+
+
+
+
 
 const ClickContext = React.createContext()
 
